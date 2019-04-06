@@ -1,0 +1,53 @@
+﻿@model HRTimesheetApp.ViewModels.TimesheetViewModel
+
+@{
+    ViewBag.Title = "Timesheets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Timesheets</h2>
+
+<table class="table table-bordered table-hover" id="tableId">
+    <thead>
+        <tr>
+            <th>
+                Clock In
+            </th>
+            <th>
+                Clock Out
+            </th>
+            <th>
+                Comment
+            </th>
+        </tr>
+    </thead>
+    <tbody id="tbodyid">
+        @if (Model != null)
+        {
+            foreach (var item in Model.Timesheets)
+            {
+        <tr>
+            <td>
+                @item.ClockInTime.ToString("h:mm:ss tt")
+            </td>
+            <td>
+                @item.ClockOutTime.ToString("h:mm:ss tt")
+            </td>
+            <td>
+                @item.Comment
+            </td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>
+<div class="text-center"><strong>Total Clocked In Time(Hrs:Minutes:Seconds) : </strong><strong id="ClockedTime">@Model.ClockedInTimeSpan</strong></div>
+<h1 class="text-center"><strong id="timer"></strong></h1>
+<div style="display: none" id="userId">@Model.Timesheet.UserId</div>
+<div class="form-group">
+    <div class="col-md-12">
+        <input type="button" id="clockInButton" value="Clock In" class="btn btn-info col-md-1" style="margin: 2px" disabled />
+        <input type="button" id="clockOutButton" value="Clock Out" class="btn btn-info col-md-1" style="margin: 3px" disabled />
+        @Html.EditorFor(model => model.Timesheet.Comment, new { htmlAttributes = new { @class = "form-control col-md-4", @id = "commentId", @style = "display:none", placeholder = "Comment" } })
+    </div>
+</div>

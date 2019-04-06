@@ -1,0 +1,73 @@
+﻿@model HRTimesheetApp.ViewModels.ReportViewModel
+@using Microsoft.AspNet.Identity
+@using HRTimesheetApp.Models
+
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Report</h2>
+@if (User.IsInRole(RoleName.Admin))
+{
+    <form method="post" action="@Url.Action("SelectUser", "Report")">
+        <div class="form-group">
+            @Html.DropDownListFor(model => model.ApplicationUsers.FirstOrDefault().Id, new SelectList(Model.ApplicationUsers.OrderBy(x => x.FullName), "Id", "FullNameUserName"), "Select User", new { @class = "form-control" })
+            <input type="submit" id="selectButton" value="Select User" class="btn btn-info" />
+        </div>
+    </form>
+}
+        <hr />
+        <div>First Clock In: <strong>@Model.FirstClockIn</strong></div>
+        <div>Last Clock Out: <strong>@Model.LastClockOut</strong></div>
+        <form method="post" action="@Url.Action("SearchByDate", "Report")">
+            <div class="row">
+                <input type="text" name="StartDate" placeholder="Start Date" class="form-control col-md-5" style="margin: 3px">
+                <input type="text" name="EndDate" placeholder="End Date" class="form-control col-md-5" style="margin: 3px">
+                <input type="submit" id="searchButton" value="Search" class="btn btn-info" style="margin: 3px" />
+            </div>
+        </form>
+            
+            <table class="table table-bordered table-hover" id="tableIdReport" style="display:none">
+                <thead>
+                    <tr>
+                        <th>
+                            Clock In
+                        </th>
+                        <th>
+                            Clock Out
+                        </th>
+                        <th>
+                            Comment
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="tbodyid">
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model.Timesheets)
+                        {
+                            <tr>
+                                <td>
+                                    @item.ClockInTime.ToString("yyyy-MM-dd h:mm:ss tt")
+                                </td>
+                                <td>
+                                    @item.ClockOutTime.ToString("yyyy-MM-dd h:mm:ss tt")
+                                </td>
+                                <td>
+                                    @item.Comment
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <hr />
+            <div class="text-center"><strong>Total Clocked In Time(Hrs:Minutes:Seconds) : </strong><strong id="ClockedTime">@Model.ClockedInTimeSpan</strong></div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="button" id="detailsButton" value="Show Details" class="btn btn-info" />
+                </div>
+            </div>
+
+
