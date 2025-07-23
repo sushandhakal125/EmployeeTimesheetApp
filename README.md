@@ -34,10 +34,10 @@ A web-based timesheet tracking system for employees and employers, built using *
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/sushandhakal125/EmployeeTimesheetApp.git
-2. **Open in Visual Studio
+2. **Open in Visual Studio**
    Open the solution file .sln in Visual Studio.
 
-3. **Database Setup
+3. **Database Setup**
 
    - Ensure SQL Server is running
 
@@ -45,7 +45,7 @@ A web-based timesheet tracking system for employees and employers, built using *
 
    - Run EF migrations or update database via package manager console
 
-4. **Run the App
+4. **Run the App**
     Press F5 in Visual Studio or use IIS Express.
 
 ## 🤝 Contributions
