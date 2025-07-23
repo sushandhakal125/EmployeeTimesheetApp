@@ -46,7 +46,7 @@ A web-based timesheet tracking system for employees and employers, built using *
    - Run EF migrations or update database via package manager console
 
 4. **Run the App**
-    Press F5 in Visual Studio or use IIS Express.
+   - Press F5 in Visual Studio or use IIS Express.
 
 ## 🤝 Contributions
 This project is a fork of sdhakal's original repository. Further improvements and customizations are welcome!
