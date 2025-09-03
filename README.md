@@ -23,7 +23,7 @@ A web-based timesheet tracking system for employees and employers, built using *
 
 ---
 
-## 📸 Screenshots
+## 📸 Screenshots:
 
 > _Add screenshots here to showcase the UI and core features._
 
